@@ -1,0 +1,8 @@
+{
+  "name": "ACTO",
+  "description": "AI Chief Task Officer: Don't be reminded. Be done.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

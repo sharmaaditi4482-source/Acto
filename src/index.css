@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-orb-pulse: orb-pulse 4s ease infinite;
+  --animate-float-up: float-up 5s linear infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+
+  @keyframes shimmer {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes orb-pulse {
+    0%, 100% { transform: scale(1) translate(-50%, -50%); opacity: 0.5; }
+    50% { transform: scale(1.15) translate(-50%, -50%); opacity: 0.8; }
+  }
+  @keyframes float-up {
+    0% { transform: translateY(100%) scale(0.8); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: translateY(-100%) scale(1.2); opacity: 0; }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 15px rgba(124, 92, 252, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(20, 241, 217, 0.7); }
+  }
+}
+
+/* Custom Grid Blueprint overlay */
+.bg-grid-blueprint {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(124, 92, 252, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 92, 252, 0.15) 1px, transparent 1px);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 20px rgba(124, 92, 252, 0.5);
+}
+
+.text-glow-teal {
+  text-shadow: 0 0 20px rgba(20, 241, 217, 0.5);
+}
+
+/* User Defined Direct Animations & Utilities */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes floatUpward {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes shimmerText {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.custom-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124,92,252,0.4) 0%, rgba(20,241,217,0.1) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: pulse 4s ease infinite;
+}
+
+.custom-particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: floatUpward infinite linear;
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #7C5CFC, #14F1D9, #7C5CFC);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmerText 3s linear infinite;
+}
+
+.scrolled-navbar {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10,10,15,0.8) !important;
+}
+
+/* Light Mode Global Theme Overrides */
+html.light,
+html.light body,
+html.light .min-h-screen,
+html.light .bg-\[\#0A0A0F\] {
+  background-color: #A6CDFC !important;
+  background-image: 
+    linear-gradient(to right, rgba(14, 165, 233, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 165, 233, 0.07) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, #E6F0FF, #A6CDFC) !important;
+  background-size: 50px 50px, 50px 50px, auto !important;
+  background-repeat: repeat, repeat, no-repeat !important;
+  background-attachment: fixed, fixed, fixed !important;
+  color: #0F0E17 !important;
+}
+
+/* Base text color overrides for light mode */
+html.light .text-\[\#F1F0FF\],
+html.light .text-white {
+  color: #0F0E17 !important;
+}
+
+html.light .text-\[\#9CA3AF\],
+html.light .text-gray-400 {
+  color: #3B4B5F !important;
+}
+
+html.light .text-gray-300 {
+  color: #2D3A4B !important;
+}
+
+html.light .text-gray-200 {
+  color: #1E2836 !important;
+}
+
+/* Dark Mode background overrides for Light Mode */
+html.light [class*="bg-[#0A0A0F]"],
+html.light [class*="bg-[#0E0E15]"],
+html.light [class*="bg-[#12121A]"],
+html.light [class*="bg-[#161622]"],
+html.light [class*="bg-[#1A1A24]"] {
+  background: rgba(241, 245, 249, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+  color: #0F172A !important;
+}
+
+/* Ensure text remains visible */
+html.light [class*="text-[#F1F0FF]"] {
+    color: #1E293B !important;
+}
+html.light [class*="text-[#9CA3AF]"] {
+    color: #64748B !important;
+}
+
+/* Floating Card components on Landing Page: ensure prominent visibility and premium shadow */
+html.light .absolute.rounded-2xl.border.bg-\[\#0A0A0F\]\/90 {
+  background: rgba(255, 255, 255, 0.92) !important;
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(124, 92, 252, 0.4) !important;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12) !important;
+  color: #0F172A !important;
+}
+
+/* Force text inside light-mode floating cards to be dark and legible */
+html.light .absolute.rounded-2xl.border.bg-\[\#0A0A0F\]\/90 .text-sm,
+html.light .absolute.rounded-2xl.border.bg-\[\#0A0A0F\]\/90 .text-xs,
+html.light .absolute.rounded-2xl.border.bg-\[\#0A0A0F\]\/90 .text-\[11px\],
+html.light .absolute.rounded-2xl.border.bg-\[\#0A0A0F\]\/90 .font-semibold,
+html.light .absolute.rounded-2xl.border.bg-\[\#0A0A0F\]\/90 .tracking-tight {
+  color: #0F172A !important;
+}
+
+/* Borders in light mode */
+html.light .border-white\/5,
+html.light .border-white\/10,
+html.light .border-white\/20,
+html.light .border-white\/30,
+html.light .border-gray-800 {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Navbar in light mode */
+html.light .scrolled-navbar {
+  background: rgba(230, 240, 250, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Blueprint grid for light mode */
+html.light .bg-grid-blueprint {
+  background-image: 
+    linear-gradient(to right, rgba(14, 165, 233, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 165, 233, 0.06) 1px, transparent 1px) !important;
+}
+
+/* Glowing text inside light mode */
+html.light .text-glow-purple {
+  text-shadow: 0 0 15px rgba(124, 92, 252, 0.35);
+}
+
+html.light .text-glow-teal {
+  text-shadow: 0 0 15px rgba(20, 241, 217, 0.35);
+}
+
+/* Glowing background ball (custom-orb) visibility in light mode */
+html.light .custom-orb {
+  background: radial-gradient(circle, rgba(124, 92, 252, 0.5) 0%, rgba(56, 189, 248, 0.35) 45%, rgba(20, 241, 217, 0.25) 70%, transparent 90%) !important;
+  filter: blur(60px) !important;
+  opacity: 0.85 !important;
+}
+
+/* Background floating particles in light mode (make them distinct blue dots with a rich glow) */
+html.light .custom-particle {
+  background: #0284c7 !important;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.6) !important;
+}
+
+/* Input fields in light mode */
+html.light input,
+html.light textarea,
+html.light select {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #0F0E17 !important;
+  border-color: rgba(15, 14, 23, 0.15) !important;
+}
+
+/* Dashboard Sidebar Specifics */
+html.light aside {
+  background-color: rgba(215, 228, 248, 0.95) !important;
+  border-color: rgba(15, 14, 23, 0.08) !important;
+}
+
+html.light aside button {
+  color: #3B4B5F !important;
+}
+
+html.light aside button:hover {
+  background-color: rgba(15, 14, 23, 0.05) !important;
+  color: #0F0E17 !important;
+}
+
+html.light aside button[class*="bg-[#7C5CFC]/15"] {
+  background-color: rgba(56, 189, 248, 0.15) !important;
+  color: #0284c7 !important;
+  border-color: #38bdf8 !important;
+}
+
+/* Recharts grid lines inside light mode */
+html.light .recharts-cartesian-grid-horizontal line,
+html.light .recharts-cartesian-grid-vertical line {
+  stroke: rgba(15, 14, 23, 0.08) !important;
+}
+
+html.light .bg-black/40 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+html.light .bg-\[\#0D0D14\]\/30 {
+  background-color: rgba(230, 236, 245, 0.6) !important;
+}
+
+html.light header {
+  background-color: rgba(224, 235, 250, 0.8) !important;
+  border-color: rgba(15, 14, 23, 0.08) !important;
+}
+
+html.light [class*="bg-[#0E0E15]/70"] {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(15, 14, 23, 0.08) !important;
+}
+
+html.light [class*="hover:bg-[#0E0E15]"]:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Dark Mode Outlines: Make purplish outlines/borders beautifully bluish in dark mode */
+html:not(.light) .border-\[\#7C5CFC\] {
+  border-color: #38bdf8 !important; /* sky-400 */
+}
+html:not(.light) .border-\[\#7C5CFC\]\/30 {
+  border-color: rgba(56, 189, 248, 0.35) !important;
+}
+html:not(.light) .border-\[\#7C5CFC\]\/20 {
+  border-color: rgba(56, 189, 248, 0.25) !important;
+}
+html:not(.light) .focus\:border-\[\#7C5CFC\]:focus {
+  border-color: #38bdf8 !important;
+}
+html:not(.light) .focus\:ring-\[\#7C5CFC\]:focus {
+  --tw-ring-color: rgba(56, 189, 248, 0.5) !important;
+}
+html:not(.light) .shadow-\[\#7C5CFC\]\/10 {
+  --tw-shadow-color: rgba(56, 189, 248, 0.15) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+html:not(.light) .shadow-\[\#7C5CFC\]\/5 {
+  --tw-shadow-color: rgba(56, 189, 248, 0.08) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+html:not(.light) .border-t-2.border-\[\#7C5CFC\] {
+  border-color: #38bdf8 !important;
+}
+html:not(.light) .border-l-2.border-\[\#7C5CFC\] {
+  border-color: #38bdf8 !important;
+}
+html:not(.light) [class*="border-purple-"] {
+  border-color: rgba(56, 189, 248, 0.25) !important;
+}
+html:not(.light) .text-\[\#A78BFA\] {
+  color: #7dd3fc !important; /* sky-300 */
+}
+
+/* Ensure the logo text is highly visible and beautiful in light mode */
+html.light .acto-logo-text {
+  background: linear-gradient(to right, #0F172A, #1E293B) !important;
+  color: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+
